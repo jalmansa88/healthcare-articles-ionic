@@ -1,22 +1,27 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Healthcare Articles</ion-title>
+    <ion-title>
+      <img src="../../assets/imgs/hc-logo.png">
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+    <ion-label>Articles by language</ion-label>
+    <ion-select (ionChange)="changeLanguage(language)" [(ngModel)]="language">
+      <ion-option value="es">Spanish</ion-option>
+      <ion-option value="en">English</ion-option>
+    </ion-select>
+  </ion-item>
   <ion-list>
-    <ion-item>
-      <ion-label>Articles by language</ion-label>
-      <ion-select (ionChange)="changeLanguage(language)" [(ngModel)]="language">
-        <ion-option value="es">Spanish</ion-option>
-        <ion-option value="en">English</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let article of articles">
-      <span (click)="goToArticle(article)">{{article.title}}</span>
-    </ion-item>
+    <ion-card *ngFor="let article of articles">
+      <ion-card-header>
+        <span (click)="goToArticle(article)"><b>{{article.title}}</b></span>
+      </ion-card-header>
+      <ion-card-content>
+        <span>{{article.bite}}</span>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>
